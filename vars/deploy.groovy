@@ -1,6 +1,12 @@
 def call(paramsFile) {
+
+    def scriptPath = "${env.WORKSPACE}@libs/cicd-library/scripts/deploy.sh"
+
     sh """
-        echo "🚀 Deploying application..."
-        bash scripts/deploy.sh ${paramsFile}
+        echo "🚀 Running deploy.sh..."
+        ls -ltr ${env.WORKSPACE}@libs/cicd-library/scripts/
+
+        chmod +x "${scriptPath}"
+        bash "${scriptPath}" "${paramsFile}"
     """
 }
