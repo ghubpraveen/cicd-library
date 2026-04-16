@@ -46,6 +46,7 @@ else
 fi
 
 DEPLOY_DIR="$WORKSPACE/app_scripts/"
+mkdir -p $WORKSPACE/app_scripts
 cp "$WAR_FILE" "$DEPLOY_DIR/SampleWebAPP-${COMMIT_HASH:0:7}.war"
 
 if [[ -f "$DEPLOY_DIR/SampleWebAPP-${COMMIT_HASH:0:7}.war" ]]; then
