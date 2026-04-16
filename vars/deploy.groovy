@@ -1,12 +1,16 @@
 def call(paramsFile) {
 
-    def scriptPath = "${env.WORKSPACE}@libs/cicd-library/scripts/deploy.sh"
+    def libPath = pwd() + "@libs"
 
     sh """
-        echo "🚀 Running deploy.sh..."
-        ls -ltr ${env.WORKSPACE}@libs/cicd-library/scripts/
+        echo "🔍 Detecting library path..."
+        ls -ltr ${libPath}
 
-        chmod +x "${scriptPath}"
-        bash "${scriptPath}" "${paramsFile}"
+        SCRIPT_PATH=\$(find ${libPath} -name deploy.sh | head -n 1)
+
+        echo "Using script: \$SCRIPT_PATH"
+
+        chmod +x "\$SCRIPT_PATH"
+        bash "\$SCRIPT_PATH" "${paramsFile}"
     """
 }
